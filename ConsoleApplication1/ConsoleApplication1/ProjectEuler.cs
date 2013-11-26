@@ -11,11 +11,15 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             ProjectEuler _e = new ProjectEuler();
+            //Test for Euler3()
+            /*
             System.Console.WriteLine(_e.Euler3(600851475143,null));
             foreach (long n in _e.Euler_3List(600851475143, null))
             {
                 System.Console.WriteLine(n);
-            }
+            }*/
+            //Test for Euler4()
+            System.Console.WriteLine(_e.Euler4(3));
             Console.ReadKey();
         }
 
@@ -103,7 +107,30 @@ namespace ConsoleApplication1
         //Returns the largest palindrome product of two n digit numbers
         public int Euler4(int n)
         {
-            
+            string str = "";
+            for (int i = 0; i < n; i++)
+            {
+                str += "9";
+            }
+            int num1 = Convert.ToInt32(str);
+            for (int k = 0; k < (10 ^ n) - 10; k++)
+            {
+                int num2 = num1;
+                for (int j = 0; j < (10^n) - 10; j++)
+                {
+                    int prod = num1 * num2;
+                    if (isPalindrome(prod))
+                    {
+                        return prod;
+                    }
+                    else
+                    {
+                        num2--;
+                    }
+                }
+                num1--;
+            }
+            return 0;
         }
 
         //General Utility Functions
@@ -113,6 +140,25 @@ namespace ConsoleApplication1
             {
                 if (num % i == 0)
                     return false;
+            }
+            return true;
+        }
+
+        public bool isPalindrome(int num)
+        {
+            string str = Convert.ToString(num);
+            int len = str.Length;
+            int mid = len/2;
+            if (len == 1)
+            {
+                return true;
+            }
+            for (int i = 0; i < mid; i++)
+            {
+                if (str[i] != str[len - 1 - i])
+                {
+                    return false;
+                }
             }
             return true;
         }
