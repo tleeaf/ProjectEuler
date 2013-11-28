@@ -202,10 +202,42 @@ namespace ConsoleApplication1
         //
         public bool isPrime(long num)
         {
-            for (int i = 2; i < num; i++)
+            if(num == 1)
             {
-                if (num % i == 0)
-                    return false;
+                return false;
+            }
+            else if (num < 4)
+            {
+                return true;
+            }
+            else if(num % 2 == 0)
+            {
+                return false;
+            }
+            else if(num < 9)
+            {
+                return true;
+            }
+            else if (num % 3 == 0)
+            {
+                return false;
+            }
+            else
+            {
+                double r = Math.Floor(Math.Sqrt(num));
+                double f = 5.0;
+                while (f <= r)
+                {
+                    if(num % f == 0)
+                    {
+                        return false;
+                    }
+                    if(num % (f+2.0) == 0)
+                    {
+                        return false;
+                    }
+                    f += 6;
+                }
             }
             return true;
         }
