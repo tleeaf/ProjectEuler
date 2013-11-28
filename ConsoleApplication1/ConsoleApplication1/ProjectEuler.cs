@@ -20,7 +20,9 @@ namespace ConsoleApplication1
             }*/
             //Test for Euler4()
             //System.Console.WriteLine(_e.Euler4(3));
-            System.Console.WriteLine(_e.Euler5(1,20));
+            //System.Console.WriteLine(_e.Euler5(1,20));
+            List<int> L = _e.populateRange(1, 100);
+            System.Console.WriteLine(_e.Euler6(L));
             Console.ReadKey();
         }
 
@@ -172,6 +174,14 @@ namespace ConsoleApplication1
             }
             return 0;
         }
+        
+        //Returns the difference (square(sums) - sum(squares)) 
+        public double Euler6(List<int> L)
+        {
+            double sumSq = sumofSquares(L);
+            double sqSum = squareofSum(L);
+            return sqSum - sumSq;
+        }
 
         //General Utility Functions
         //
@@ -202,6 +212,34 @@ namespace ConsoleApplication1
                 }
             }
             return true;
+        }
+
+        public int sumofSquares(List<int> L)
+        {
+            int result = 0;
+            foreach (int i in L)
+            {
+                result += i*i;
+            }
+            return result;
+        }
+
+        public double squareofSum(List<int> L)
+        {
+            double sum = L.Sum();
+            return Math.Pow(sum,2.0);
+        }
+
+        public List<int> populateRange(int lo, int hi)
+        {
+            List<int> L = new List<int>();
+            int val = lo;
+            int diff = hi - lo;
+            for(int i = lo; i <= hi; i++)
+            {
+                L.Add(i);
+            }
+            return L;
         }
     }
 }
