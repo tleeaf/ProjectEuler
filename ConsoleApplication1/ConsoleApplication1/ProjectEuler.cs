@@ -19,7 +19,8 @@ namespace ConsoleApplication1
                 System.Console.WriteLine(n);
             }*/
             //Test for Euler4()
-            System.Console.WriteLine(_e.Euler4(3));
+            //System.Console.WriteLine(_e.Euler4(3));
+            System.Console.WriteLine(_e.Euler5(1,20));
             Console.ReadKey();
         }
 
@@ -85,6 +86,7 @@ namespace ConsoleApplication1
             return pFactors.Max();
         }
 
+        //Returns largest prime factor of num, list of prime factors
         public HashSet<long> Euler_3List(long num, HashSet<long> pFactors)
         {
             if (pFactors == null)
@@ -138,7 +140,41 @@ namespace ConsoleApplication1
             return pals.Max();
         }
 
+        //Returns the smallest number that can be divided by numbers falling in the range [lo,hi]
+        public int Euler5(int lo, int hi)
+        {
+            //Result needs to be at least 'hi'
+            int num = hi;
+            int diff = hi - lo;
+            bool found = false;
+            while (!found)
+            {
+                int count = 0;
+                for (int i = lo; i <= hi; i++)
+                {
+                    if (num % i == 0)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (count == diff + 1)
+                {
+                    return num;
+                }
+                else
+                {
+                    num++;
+                }
+            }
+            return 0;
+        }
+
         //General Utility Functions
+        //
         public bool isPrime(long num)
         {
             for (int i = 2; i < num; i++)
