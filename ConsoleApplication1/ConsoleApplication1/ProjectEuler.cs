@@ -21,8 +21,9 @@ namespace ConsoleApplication1
             //Test for Euler4()
             //System.Console.WriteLine(_e.Euler4(3));
             //System.Console.WriteLine(_e.Euler5(1,20));
-            List<int> L = _e.populateRange(1, 100);
-            System.Console.WriteLine(_e.Euler6(L));
+            //List<int> L = _e.populateRange(1, 100);
+            //System.Console.WriteLine(_e.Euler6(L));
+            System.Console.WriteLine(_e.Euler7(10001));
             Console.ReadKey();
         }
 
@@ -183,6 +184,20 @@ namespace ConsoleApplication1
             return sqSum - sumSq;
         }
 
+        public int Euler7(int num)
+        {
+            int count = 0;
+            int i = 1;
+            do
+            {
+                i++;
+                if (isPrime(i))
+                {
+                    count++;
+                }
+            } while (count < num);
+            return i;
+        }
         //General Utility Functions
         //
         public bool isPrime(long num)
