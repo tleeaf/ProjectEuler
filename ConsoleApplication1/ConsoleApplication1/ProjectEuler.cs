@@ -107,21 +107,26 @@ namespace ConsoleApplication1
         //Returns the largest palindrome product of two n digit numbers
         public int Euler4(int n)
         {
+            HashSet<int> pals = new HashSet<int>();
+            //Generate highest n digit number by concatenating strings
             string str = "";
             for (int i = 0; i < n; i++)
             {
                 str += "9";
             }
+            //Convert the string to int
             int num1 = Convert.ToInt32(str);
-            for (int k = 0; k < (10 ^ n) - 10; k++)
+
+            
+            for (int k = 0; k < (Math.Pow(10,n)) - 10; k++)
             {
                 int num2 = num1;
-                for (int j = 0; j < (10^n) - 10; j++)
+                for (int j = 0; j < (Math.Pow(10, n)) - 10; j++)
                 {
                     int prod = num1 * num2;
                     if (isPalindrome(prod))
                     {
-                        return prod;
+                        pals.Add(prod);
                     }
                     else
                     {
@@ -130,7 +135,7 @@ namespace ConsoleApplication1
                 }
                 num1--;
             }
-            return 0;
+            return pals.Max();
         }
 
         //General Utility Functions
